@@ -1,0 +1,23 @@
+{
+  "name": "development-proxy",
+  "version": "1.0.0",
+  "description": "development-proxy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nicekiwi/development-proxy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nicekiwi/development-proxy/issues"
+  },
+  "homepage": "https://github.com/nicekiwi/development-proxy#readme",
+  "dependencies": {
+    "hoxy": "^3.2.1",
+    "read-yaml": "^1.0.0"
+  }
+}
