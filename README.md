@@ -9,7 +9,7 @@ Simple development proxy to intercept specified files and load local files inste
 
 ## Install
 
-`npm i`
+`npm install`
 
 ## Config
 
