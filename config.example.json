@@ -1,0 +1,9 @@
+{
+  "port": 8889,
+  "sites": [
+    {
+      "remote":"path/to/remote/file",
+      "local":"path/to/local/file"
+    }
+  ]
+}
