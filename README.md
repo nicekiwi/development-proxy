@@ -36,7 +36,7 @@ The following options are available in `./config.josn`.
 **Files Array Object:**
 
 | Option | Type | Description |
-| :-- | --- | --- |
+| :-- | :-- | :-- |
 | `remote` | String | The remote file to intercept. |
 | `local` | String | The absolute path from the disk drive's root, e.g. `/` or `c:/` of the local file to return. |
 
