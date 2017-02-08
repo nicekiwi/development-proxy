@@ -2,6 +2,7 @@
 // Load Deps
 import fs from 'fs';
 import forge from 'node-forge';
+import logger from './logger';
 
 const pki = forge.pki;
 const keys = pki.rsa.generateKeyPair(2048);
@@ -17,7 +18,7 @@ const attrs = [
   { name: 'organizationName', value: 'Development Proxy Inc.' }
 ];
 
-console.log('Generating Keys..');
+logger.info('Generating Keys..');
 
 cert.publicKey = keys.publicKey;
 cert.serialNumber = '01';
@@ -38,16 +39,16 @@ const privateKey = pki.privateKeyToPem(keys.privateKey);
 // now convert and write the files
 try {
   fs.writeFileSync(`${path}/${filename}.crt.pem`, certificate);
-  console.log(`Created ${path}/${filename}.crt.pem`);
+  logger.info(`Created ${path}/${filename}.crt.pem`);
 } catch(err) {
-  console.error(`Error: ${err}`);
+  logger.error(`Error: ${err}`);
 }
 
 try {
   fs.writeFileSync(`${path}/${filename}.key.pem`, privateKey);
-  console.log(`Created ${path}/${filename}.key.pem`);
+  logger.info(`Created ${path}/${filename}.key.pem`);
 } catch(err) {
-  console.error(`Error: ${err}`);
+  logger.error(`Error: ${err}`);
 }
 
-console.log(`Done.`);
+logger.info(`Done.`);

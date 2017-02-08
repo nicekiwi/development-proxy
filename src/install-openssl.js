@@ -2,6 +2,7 @@
 // Load Deps
 import async from 'async';
 import { exec } from 'child_process';
+import logger from './logger';
 
 const filename = 'openssl-root-ca';
 const path = './certificate'
@@ -15,21 +16,21 @@ const commands = [
 const execute = (command, callback) => {
   exec(command, (err, stdout, stderr) => {
 
-    console.log(command);
+    logger.info(command);
 
     if (err) callback(err ? err : null);
     else callback();
   });
 };
 
-console.log('Generating Keys..');
+logger.info('Generating Keys..');
 
 async.mapSeries(commands, execute, (err, results) => {
 
   if(err) {
-    console.error(`Error: ${err}`);
+    logger.error(`Error: ${err}`);
     return;
   }
 
-  console.log(`Done.`);
+  logger.info(`Done.`);
 });
