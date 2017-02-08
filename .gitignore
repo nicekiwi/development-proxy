@@ -1,5 +1,7 @@
 .idea/
 node_modules/
 *.pem
+*.log
+config.json
 
 \.DS_Store

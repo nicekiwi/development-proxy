@@ -2,9 +2,14 @@
   "name": "development-proxy",
   "version": "1.0.0",
   "description": "development-proxy",
+  "private": true,
   "main": "index.js",
+  "author": "Ezra Sharp <ezra@kiwidev.co.nz>",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node install.js",
+    "update": "node install.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +22,18 @@
   },
   "homepage": "https://github.com/nicekiwi/development-proxy#readme",
   "dependencies": {
+    "async": "^2.1.4",
+    "babel-core": "^6.22.1",
+    "babel-polyfill": "^6.22.0",
+    "babel-preset-env": "^1.1.8",
     "hoxy": "^3.2.1",
-    "read-yaml": "^1.0.0"
+    "moment": "^2.17.1",
+    "node-forge": "^0.6.48",
+    "winston": "^2.3.1"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
   }
 }

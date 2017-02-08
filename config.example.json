@@ -1,0 +1,11 @@
+{
+  "port": 8889,
+  "generator": "forge",
+  "logToFile": false,
+  "files": [
+    {
+      "remote":"path/to/remote/file",
+      "local":"path/to/local/file"
+    }
+  ]
+}
