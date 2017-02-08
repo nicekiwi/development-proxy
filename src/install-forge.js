@@ -4,6 +4,8 @@ import fs from 'fs';
 import forge from 'node-forge';
 import logger from './logger';
 
+logger.info('Generating Keys..');
+
 const pki = forge.pki;
 const keys = pki.rsa.generateKeyPair(2048);
 const cert = pki.createCertificate();
@@ -17,8 +19,6 @@ const attrs = [
   { name: 'localityName', value: 'Christchurch' },
   { name: 'organizationName', value: 'Development Proxy Inc.' }
 ];
-
-logger.info('Generating Keys..');
 
 cert.publicKey = keys.publicKey;
 cert.serialNumber = '01';

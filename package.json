@@ -1,12 +1,11 @@
 {
   "name": "development-proxy",
   "version": "1.0.0",
-  "description": "development-proxy",
+  "description": "A simple development proxy I built to help me by intercepting configured files and load local files instead. I wanted a dedicated replacement to Fiddler and Charles Proxy.",
   "private": true,
   "main": "index.js",
   "author": "Ezra Sharp <ezra@kiwidev.co.nz>",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "install": "node install.js",
     "update": "node install.js",
     "start": "node index.js"
@@ -15,8 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/nicekiwi/development-proxy.git"
   },
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/nicekiwi/development-proxy/issues"
   },
@@ -29,6 +27,7 @@
     "hoxy": "^3.2.1",
     "moment": "^2.17.1",
     "node-forge": "^0.6.48",
+    "upath": "^1.0.0",
     "winston": "^2.3.1"
   },
   "babel": {

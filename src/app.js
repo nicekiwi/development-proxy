@@ -2,6 +2,7 @@
 // Load Deps
 import fs from 'fs';
 import hoxy from 'hoxy';
+import upath from 'upath';
 import logger from './logger';
 
 // Load Config
@@ -54,12 +55,13 @@ config.files.map((file, i) => {
     fullUrl: file.remote
   }, (req, resp, cycle) => {
 
-    logger.info(`Requested: ${file.remote}`);
-    logger.info(`Returned: ${file.local}`);
+    const path = upath.normalize(file.local);
+    const strategy = config.replaceRemote ? 'replace' : 'overlay';
 
-    return cycle.serve({
-      path: file.local
-    });
+    logger.info(`Requested: ${file.remote}`);
+    logger.info(`Returned: ${path}`);
+
+    return cycle.serve({ path, strategy });
   });
 
 });
