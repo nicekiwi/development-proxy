@@ -2,6 +2,7 @@
   "port": 8889,
   "generator": "forge",
   "logToFile": false,
+  "replaceRemote": false,
   "files": [
     {
       "remote":"path/to/remote/file",
