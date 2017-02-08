@@ -1,6 +1,8 @@
 {
   "port": 8889,
-  "sites": [
+  "generator": "forge",
+  "logToFile": true,
+  "files": [
     {
       "remote":"https://www.no1fitness.co.nz/images/assetimages/js/main-v2.0.0.min.js",
       "local":"C:/Users/Ezra.maxonline/Documents/Developer/no1fitness-site-assets/output/js/main-v2.0.0.min.js"
@@ -18,12 +20,12 @@
       "local":"C:/Users/Ezra.maxonline/Documents/Developer/no1fitness-site-assets/output/js/before-v2.0.0-min-js-map.json"
     },
     {
-      "remote":"https://www.no1fitness.co.nz/images/assetimages/js/main-v2.0.0.min.css",
-      "local":"C:/Users/Ezra.maxonline/Documents/Developer/no1fitness-site-assets/output/js/main-v2.0.0.min.css"
+      "remote":"https://www.no1fitness.co.nz/images/assetimages/css/main-v2.0.0.min.css",
+      "local":"C:/Users/Ezra.maxonline/Documents/Developer/no1fitness-site-assets/output/css/main-v2.0.0.min.css"
     },
     {
-      "remote":"https://www.no1fitness.co.nz/images/assetimages/js/main-v2.0.0-min-css-map.json",
-      "local":"C:/Users/Ezra.maxonline/Documents/Developer/no1fitness-site-assets/output/js/main-v2.0.0-min-css-map.json"
+      "remote":"https://www.no1fitness.co.nz/images/assetimages/css/main-v2.0.0-min-css-map.json",
+      "local":"C:/Users/Ezra.maxonline/Documents/Developer/no1fitness-site-assets/output/css/main-v2.0.0-min-css-map.json"
     }
   ]
 }
