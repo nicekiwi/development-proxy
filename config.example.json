@@ -1,8 +1,9 @@
 {
   "port": 8889,
-  "generator": "forge",
+  "certificate": "forge",
   "logToFile": false,
-  "replaceRemote": false,
+  "strict": true,
+  "localRoot": "/",
   "files": [
     {
       "remote":"path/to/remote/file",

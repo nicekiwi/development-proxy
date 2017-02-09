@@ -3,42 +3,53 @@
 import fs from 'fs';
 import hoxy from 'hoxy';
 import upath from 'upath';
+import fileExists from 'file-exists';
 import logger from './logger';
 
 // Load Config
 import config from '../config.json';
 
-const path = './certificate';
-const filename = `${config.generator}-root-ca`;
+// validate config
+const options = {
+  port: config.port || 8889,
+  certificate: config.certificate || 'forge',
+  logToFile: config.logToFile || false,
+  strict: config.strict || false,
+  localRoot: config.localRoot || '/',
+  files: config.files || []
+};
+
+const path = upath.join(__dirname, '../certificate');
+const filename = `${options.certificate}-root-ca`;
 
 // Get the private key and certificate
-const key = fs.readFileSync(`${path}/${config.generator}-root-ca.key.pem`);
-const cert = fs.readFileSync(`${path}/${config.generator}-root-ca.crt.pem`);
-
-if(!key || !cert) {
-  logger.error('You must create keys first.');
+if(!fileExists.sync(`${path}/${filename}.crt.pem`)) {
+  logger.error('A Certificate file was not found in ./certificate.');
   process.exit(1);
 }
 
-if(!config.files.length) {
-  logger.error('No files defined in ./config.json');
+if(!options.files.length) {
+  logger.error('No files have been defined in ./config.json');
   process.exit(1);
 }
 
 // Create Hoxy instance
 const proxy = hoxy.createServer({
-  certAuthority: { key, cert }
+  certAuthority: {
+    key: fs.readFileSync(`${path}/${filename}.key.pem`),
+    cert: fs.readFileSync(`${path}/${filename}.crt.pem`)
+  }
 });
 
 // Setup Error Events
 proxy.on('error', (e) => {
   switch (e.code) {
     case 'EACCES':
-      logger.error(`Use of port ${config.port} requires elevated privileges.`);
+      logger.error(`Use of port ${options.port} requires elevated privileges.`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      logger.error(`Port ${config.port} is already in use.`);
+      logger.error(`Port ${options.port} is already in use.`);
       process.exit(1);
       break;
     default:
@@ -47,7 +58,7 @@ proxy.on('error', (e) => {
 });
 
 // Setup Files
-config.files.map((file, i) => {
+options.files.map((file, i) => {
 
   // Intercept files
   proxy.intercept({
@@ -56,17 +67,18 @@ config.files.map((file, i) => {
   }, (req, resp, cycle) => {
 
     const path = upath.normalize(file.local);
-    const strategy = config.replaceRemote ? 'replace' : 'overlay';
+    const docroot = upath.normalize(options.localRoot);
+    const strategy = options.strict ? 'replace' : 'overlay';
 
     logger.info(`Requested: ${file.remote}`);
-    logger.info(`Returned: ${path}`);
+    logger.info(`Returned: ${upath.join(docroot, path)}`);
 
-    return cycle.serve({ path, strategy });
+    return cycle.serve({ path, strategy, docroot });
   });
 
 });
 
 // Start Hoxy
-proxy.listen(config.port, () => {
-  logger.info(`Development Proxy listening on https://localhost:${config.port}.`);
+proxy.listen(options.port, () => {
+  logger.info(`Development Proxy listening on https://localhost:${options.port}.`);
 });

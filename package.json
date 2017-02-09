@@ -6,8 +6,7 @@
   "main": "index.js",
   "author": "Ezra Sharp <ezra@kiwidev.co.nz>",
   "scripts": {
-    "install": "node install.js",
-    "update": "node install.js",
+    "generate": "node index.js --generate",
     "start": "node index.js"
   },
   "repository": {
@@ -24,11 +23,14 @@
     "babel-core": "^6.22.1",
     "babel-polyfill": "^6.22.0",
     "babel-preset-env": "^1.1.8",
+    "file-exists": "^3.0.1",
     "hoxy": "^3.2.1",
     "moment": "^2.17.1",
     "node-forge": "^0.6.48",
+    "readline-sync": "^1.4.6",
     "upath": "^1.0.0",
-    "winston": "^2.3.1"
+    "winston": "^2.3.1",
+    "yargs": "^6.6.0"
   },
   "babel": {
     "presets": [
