@@ -2,15 +2,20 @@
 // Load Deps
 import fs from 'fs';
 import forge from 'node-forge';
+import checkExisting from './check-existing';
 import logger from './logger';
 
-logger.info('Generating Keys..');
+const path = './certificate';
+const filename = 'forge-root-ca';
+
+logger.info('Generating Certificate - Via Forge');
+
+// Check if previous certificate exists
+checkExisting(`${path}/${filename}.crt.pem`);
 
 const pki = forge.pki;
 const keys = pki.rsa.generateKeyPair(2048);
 const cert = pki.createCertificate();
-const path = './certificate';
-const filename = 'forge-root-ca';
 
 const attrs = [
   { name: 'commonName', value: 'development.proxy' },

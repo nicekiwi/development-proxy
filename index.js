@@ -4,5 +4,17 @@
 require('babel-core/register');
 require('babel-polyfill');
 
-// Load App
-require('./src/app.js');
+// get cmd arguments (if any)
+const yargs = require('yargs').argv;
+
+// pick an option
+switch (yargs.generate) {
+  case 'openssl':
+    require('./src/install-openssl.js');
+    break;
+  case true:
+    require('./src/install-forge.js');
+    break;
+  default:
+    require('./src/app.js');
+}

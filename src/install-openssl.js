@@ -2,6 +2,7 @@
 // Load Deps
 import async from 'async';
 import { exec } from 'child_process';
+import checkExisting from './check-existing';
 import logger from './logger';
 
 const filename = 'openssl-root-ca';
@@ -23,7 +24,10 @@ const execute = (command, callback) => {
   });
 };
 
-logger.info('Generating Keys..');
+// Check if previous certificate exists
+checkExisting(`${path}/${filename}.crt.pem`);
+
+logger.info('Generating Certificate - Via OpenSSL');
 
 async.mapSeries(commands, execute, (err, results) => {
 

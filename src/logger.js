@@ -20,9 +20,10 @@ const logger = new (winston.Logger)({
 });
 
 // Setup Logging to file
-if(config.logToFile === true) {
-  logger.add(winston.transports.File, { filename: `./logs/${moment().format('DD-MM-YYYY')}.log` });
-  logger.info('(Logging to file enabled)');
+if(config.logToFile && config.logToFile === true) {
+  const filename = `./logs/${moment().format('DD-MM-YYYY')}.log`;
+  logger.add(winston.transports.File, { filename });
+  logger.info(`Saving log output to: ${filename}.`);
 }
 
 export default logger;
